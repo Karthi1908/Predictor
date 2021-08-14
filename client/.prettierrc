@@ -1,0 +1,14 @@
+{
+  "overrides": [
+    {
+      "files": ["*.js", "*.json"],
+      "options": {
+        "tabWidth": 2,
+        "arrowParens": "always",
+        "bracketSpacing": true,
+        "singleQuote": true,
+        "trailingComma": "es5"
+      }
+    }
+  ]
+}
