@@ -16,11 +16,12 @@ import {
   NumberInput,
   NumberInputField,
   Accordion,
-  AccordionIcon,
   AccordionItem,
   AccordionButton,
   AccordionPanel,
 } from '@chakra-ui/react';
+import PredictionContext from '../../helper/PredictionContext';
+import Loading from '../../helper/Loading';
 
 const BuySellWindow = ({ options, currentDetails }) => {
   const [request, setRequest] = React.useState({
@@ -117,6 +118,7 @@ const BuySellWindow = ({ options, currentDetails }) => {
 };
 
 export default function Predict({ id }) {
+  const { predictions } = React.useContext(PredictionContext);
   const [data, setData] = React.useState(null);
   const colors = {
     bg: useColorModeValue('gray.100', 'gray.900'),
@@ -126,13 +128,13 @@ export default function Predict({ id }) {
   };
 
   React.useEffect(() => {
+    const _ = predictions.get(id);
     setData({
-      prediction:
-        'Will Cardano support smart contracts on Mainnet by October 1st, 2021?',
-      lastDate: 'October 1, 2021',
+      prediction: _.predictionName,
+      lastDate: _.endTime,
       tradeVol: 617777,
       liquidity: 111111,
-      options: ['YES', 'NO'],
+      options: _.predictionOptions,
       disclosure: `Clarification: A redundant reference to smart contract "deployment" has been removed to clarify the resolution criteria of this market, which will resolve "Yes" if smart contract functionality is live by the resolution date.
 
       This is a market on if Cardano Mainnet will be live and supporting smart contract functionality by October 1st, 2021, 12 PM ET. In Cardano’s official roadmap, this is referred to as Goguen. This market will resolve to "Yes" if it is possible to create and execute functional smart contracts on the Cardano network on a “Mainnet” by the resolution date. This does not include staking functionality or consensus mechanisms. In the event of ambiguity in terms of the market outcome, the market will be resolved in good faith at the sole discretion of the Markets Integrity Committee (MIC).
@@ -250,6 +252,6 @@ export default function Predict({ id }) {
       </Box>
     </Container>
   ) : (
-    <>Loading</>
+    <Loading />
   );
 }
