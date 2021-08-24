@@ -2434,14 +2434,6 @@
     rx-sandbox "^1.0.4"
     rxjs "^6.6.3"
 
-"@taquito/tezbridge-signer@^10.1.0":
-  version "10.1.0"
-  resolved "https://registry.yarnpkg.com/@taquito/tezbridge-signer/-/tezbridge-signer-10.1.0.tgz#d5f435b4458408700a40283302c68bd4d49d78ab"
-  integrity sha512-yK0SZ6/rJgmpl7pbNoceNq3LlTgu/zkV+889/sQ12u7ieZ4oj735LsI3F/O/ENKvGQYsfkMSm87BtzwyeXGyrw==
-  dependencies:
-    "@taquito/utils" "^10.1.0"
-    typedarray-to-buffer "^4.0.0"
-
 "@taquito/utils@^10.1.0":
   version "10.1.0"
   resolved "https://registry.yarnpkg.com/@taquito/utils/-/utils-10.1.0.tgz#032843be047ee2a86ff07755530089d9922c10d0"
@@ -2494,11 +2486,6 @@
   integrity sha512-IR0iWbFkgd56Bu5ZI/ej8yQwrkCv8Qydx6RzwbKz9faXazR/+5tvYKsZQgyXJiwgpcva127YO6JcWy7YlCfofQ==
   dependencies:
     "@babel/runtime" "^7.12.5"
-
-"@tezos-contrib/react-wallet-provider@^1.0.0-alpha.11":
-  version "1.0.0-alpha.11"
-  resolved "https://registry.yarnpkg.com/@tezos-contrib/react-wallet-provider/-/react-wallet-provider-1.0.0-alpha.11.tgz#61e032b9f87a5988b0557338e881ecdd0b9aa20e"
-  integrity sha512-eOvp1wtE1UiYyzZQjmrXcOnkh1TqRTvKzHt+Nkt5BDgqULoxL3D8jKZRO4/XhJglW0yJgol6azbrCmVuf9S7Ng==
 
 "@tootallnate/once@1":
   version "1.1.2"
@@ -6134,7 +6121,7 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
-framer-motion@^4:
+framer-motion@^4.1.17:
   version "4.1.17"
   resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-4.1.17.tgz#4029469252a62ea599902e5a92b537120cc89721"
   integrity sha512-thx1wvKzblzbs0XaK2X0G1JuwIdARcoNOW7VVwjO8BUltzXPyONGAElLu6CiCScsOQRI7FIk/45YTFtJw5Yozw==
@@ -12098,11 +12085,6 @@ typedarray-to-buffer@^3.1.5:
   integrity sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==
   dependencies:
     is-typedarray "^1.0.0"
-
-typedarray-to-buffer@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/typedarray-to-buffer/-/typedarray-to-buffer-4.0.0.tgz#cdd2933c61dd3f5f02eda5d012d441f95bfeb50a"
-  integrity sha512-6dOYeZfS3O9RtRD1caom0sMxgK59b27+IwoNy8RDPsmslSGOyU+mpTamlaIW7aNKi90ZQZ9DFaZL3YRoiSCULQ==
 
 typedarray@^0.0.6:
   version "0.0.6"

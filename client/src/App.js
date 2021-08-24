@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { ChakraProvider, ColorModeProvider } from '@chakra-ui/react';
-import { WalletProvider } from '@tezos-contrib/react-wallet-provider';
 import Header from './components/Header';
 import Predict from './components/Predict';
 import './App.css';
@@ -33,37 +32,29 @@ function App() {
           useSystemColorMode: true,
         }}
       >
-        <WalletProvider
-          name="wallet-provider"
-          clientType="taquito"
-          network="FLORENCENET"
-        >
-          {predictions ? (
-            <>
-              <Header />
-              <PredictionContext.Provider
-                value={{
-                  predictions,
-                  updatePredictions,
-                }}
-              >
-                <Router>
-                  <Route exact path="/">
-                    <Home />
-                  </Route>
-                  <Route
-                    path="/predict/:id"
-                    component={(props) => (
-                      <Predict id={props.match.params.id} />
-                    )}
-                  />
-                </Router>
-              </PredictionContext.Provider>
-            </>
-          ) : (
-            <Loading />
-          )}
-        </WalletProvider>
+        {predictions ? (
+          <>
+            <Header />
+            <PredictionContext.Provider
+              value={{
+                predictions,
+                updatePredictions,
+              }}
+            >
+              <Router>
+                <Route exact path="/">
+                  <Home />
+                </Route>
+                <Route
+                  path="/predict/:id"
+                  component={(props) => <Predict id={props.match.params.id} />}
+                />
+              </Router>
+            </PredictionContext.Provider>
+          </>
+        ) : (
+          <Loading />
+        )}
       </ColorModeProvider>
     </ChakraProvider>
   );

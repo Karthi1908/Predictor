@@ -22,7 +22,7 @@ import {
 } from '@chakra-ui/react';
 import PredictionContext from '../../helper/PredictionContext';
 import Loading from '../../helper/Loading';
-import { ContractProvider, CONTRACT_ADDRESS, wallet } from '../../helper/tezos';
+import { CONTRACT_ADDRESS, wallet } from '../../helper/tezos';
 
 const BuySellWindow = ({ id, options }) => {
   const [request, setRequest] = React.useState({
