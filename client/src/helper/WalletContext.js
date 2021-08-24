@@ -1,3 +1,4 @@
+import { NetworkType } from '@airgap/beacon-sdk';
 import React from 'react';
 import { beaconWallet } from './tezos';
 
@@ -17,7 +18,11 @@ const useWallet = () => {
   const connect = async () => {
     const currAcc = await beaconWallet.client.getActiveAccount();
     if (!currAcc) {
-      const req = await beaconWallet.client.requestPermissions();
+      const req = await beaconWallet.client.requestPermissions({
+        network: {
+          type: NetworkType.GRANADANET,
+        },
+      });
       if (req) {
         setActiveAccount(req.accountInfo);
       }

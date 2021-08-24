@@ -1,3 +1,4 @@
+import { NetworkType } from '@airgap/beacon-sdk';
 import { BeaconWallet } from '@taquito/beacon-wallet';
 import { TezosToolkit } from '@taquito/taquito';
 const CONTRACT_ADDRESS = 'KT1Mn8ogydUu3NpB1tztJ2QpPC9ms4MbJi5m';
@@ -8,7 +9,7 @@ const ContractProvider = Tezos.contract;
 
 const beaconWallet = new BeaconWallet({
   name: 'tezasia-hack',
-  preferredNetwork: 'granadanet',
+  preferredNetwork: NetworkType.GRANADANET,
 });
 
 Tezos.setWalletProvider(beaconWallet);
