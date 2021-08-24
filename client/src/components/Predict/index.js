@@ -22,15 +22,23 @@ import {
 } from '@chakra-ui/react';
 import PredictionContext from '../../helper/PredictionContext';
 import Loading from '../../helper/Loading';
+import { ContractProvider, CONTRACT_ADDRESS, wallet } from '../../helper/tezos';
 
-const BuySellWindow = ({ options, currentDetails }) => {
+const BuySellWindow = ({ id, options }) => {
   const [request, setRequest] = React.useState({
     option: options[0],
     quantity: 0,
   });
 
-  const buySubmit = (e) => {
+  const buySubmit = async (e) => {
     e.preventDefault();
+    const { option, quantity } = e.target.elements;
+
+    const contract = await wallet.at(CONTRACT_ADDRESS);
+
+    contract.methods.voteOnprediction(id, option.value).send({
+      amount: parseFloat(quantity.value) * 0.1,
+    });
   };
 
   return (
@@ -41,7 +49,7 @@ const BuySellWindow = ({ options, currentDetails }) => {
       </TabList>
       <TabPanels>
         <TabPanel>
-          <form>
+          <form onSubmit={buySubmit}>
             <Container
               padding={{ base: '0' }}
               display="flex"
@@ -74,9 +82,6 @@ const BuySellWindow = ({ options, currentDetails }) => {
                             borderRadius="2xl"
                           >
                             {option}
-                            {currentDetails &&
-                              option in currentDetails &&
-                              `, ${currentDetails[option]} already bought`}
                           </Box>
                         </Radio>
                       );
@@ -135,8 +140,8 @@ export default function Predict({ id }) {
         new Date(_.endTime).toLocaleDateString() +
         ' ' +
         new Date(_.endTime).toLocaleTimeString(),
-      tradeVol: 617777,
-      liquidity: 111111,
+      tradeVol: '-',
+      liquidity: '-',
       options: _.predictionOptions,
       disclosure: `Clarification: A redundant reference to smart contract "deployment" has been removed to clarify the resolution criteria of this market, which will resolve "Yes" if smart contract functionality is live by the resolution date.
 
@@ -251,7 +256,7 @@ export default function Predict({ id }) {
         flexDirection="row"
         flexWrap="wrap"
       >
-        <BuySellWindow options={data.options} currentDetails={{ YES: 20 }} />
+        <BuySellWindow id={id} options={data.options} />
       </Box>
     </Container>
   ) : (
