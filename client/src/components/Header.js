@@ -17,7 +17,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon, SunIcon, MoonIcon } from '@chakra-ui/icons';
-import { useWallet } from '@tezos-contrib/react-wallet-provider';
+import { useWallet } from '../helper/WalletContext';
 
 const NavLink = ({ children }) => (
   <Link
@@ -36,7 +36,7 @@ const NavLink = ({ children }) => (
 
 export default function Header({ links = [] }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { connected, activeAccount, connect, disconnect } = useWallet();
+  const { connect, disconnect, activeAccount, connected } = useWallet();
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (

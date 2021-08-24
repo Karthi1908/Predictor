@@ -131,7 +131,10 @@ export default function Predict({ id }) {
     const _ = predictions.get(id);
     setData({
       prediction: _.predictionName,
-      lastDate: _.endTime,
+      lastDate:
+        new Date(_.endTime).toLocaleDateString() +
+        ' ' +
+        new Date(_.endTime).toLocaleTimeString(),
       tradeVol: 617777,
       liquidity: 111111,
       options: _.predictionOptions,

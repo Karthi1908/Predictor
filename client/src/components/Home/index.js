@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  Box,
-  color,
-  Container,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react';
-import { ContractProvider, CONTRACT_ADDRESS } from '../../helper/tezos';
-import { MichelsonMap } from '@taquito/taquito';
+import { Box, Container, Text, useColorModeValue } from '@chakra-ui/react';
 import PredictionContext from '../../helper/PredictionContext';
 import { useHistory } from 'react-router-dom';
 
