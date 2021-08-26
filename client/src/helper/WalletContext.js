@@ -25,6 +25,7 @@ const useWallet = () => {
       });
       if (req) {
         setActiveAccount(req.accountInfo);
+        setConnected(true);
       }
     }
   };

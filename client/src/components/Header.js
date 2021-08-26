@@ -1,9 +1,9 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   Box,
   Flex,
   HStack,
-  Link,
   IconButton,
   Button,
   Menu,
@@ -19,22 +19,8 @@ import {
 import { HamburgerIcon, CloseIcon, SunIcon, MoonIcon } from '@chakra-ui/icons';
 import { useWallet } from '../helper/WalletContext';
 
-const NavLink = ({ children }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={'md'}
-    _hover={{
-      textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700'),
-    }}
-    href={'#'}
-  >
-    {children}
-  </Link>
-);
-
 export default function Header({ links = [] }) {
+  const history = useHistory();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { connect, disconnect, activeAccount, connected } = useWallet();
   const { colorMode, toggleColorMode } = useColorMode();
@@ -78,6 +64,9 @@ export default function Header({ links = [] }) {
                   </Text>
                 </MenuButton>
                 <MenuList>
+                  <MenuItem onClick={() => history.push('/mypreds')}>
+                    My Predictions
+                  </MenuItem>
                   <MenuItem onClick={disconnect}>Disconnect</MenuItem>
                 </MenuList>
               </Menu>
@@ -104,6 +93,9 @@ export default function Header({ links = [] }) {
                   </Text>
                 </MenuButton>
                 <MenuList>
+                  <MenuItem onClick={() => history.push('/mypreds')}>
+                    My Predictions
+                  </MenuItem>
                   <MenuItem onClick={disconnect}>Disconnect</MenuItem>
                 </MenuList>
               </Menu>

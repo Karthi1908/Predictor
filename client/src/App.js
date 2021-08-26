@@ -8,19 +8,26 @@ import Home from './components/Home';
 import { ContractProvider, CONTRACT_ADDRESS } from './helper/tezos';
 import PredictionContext from './helper/PredictionContext';
 import Loading from './helper/Loading';
+import MyPreds from './components/Mypreds';
 
 function App() {
   const [predictions, setPredictions] = React.useState(null);
+  const [predictionsArray, setPredictionsArray] = React.useState([]);
 
-  const updatePredictions = (preds) => {
+  const updatePredictions = (preds, predArray) => {
     setPredictions(preds);
+    setPredictionsArray(predArray);
   };
 
   React.useEffect(() => {
     ContractProvider.at(CONTRACT_ADDRESS).then(async (contract) => {
       const storage = await contract.storage();
       const predictions = storage.predictions;
-      updatePredictions(predictions);
+      const predList = [];
+      for (let pred of predictions.keys()) {
+        predList.push({ id: pred, ...predictions.get(pred) });
+      }
+      updatePredictions(predictions, predList);
     });
   }, []);
 
@@ -34,14 +41,15 @@ function App() {
       >
         {predictions ? (
           <>
-            <Header />
             <PredictionContext.Provider
               value={{
                 predictions,
+                predictionsArray,
                 updatePredictions,
               }}
             >
               <Router>
+                <Header />
                 <Route exact path="/">
                   <Home />
                 </Route>
@@ -49,6 +57,7 @@ function App() {
                   path="/predict/:id"
                   component={(props) => <Predict id={props.match.params.id} />}
                 />
+                <Route path="/mypreds" component={MyPreds} />
               </Router>
             </PredictionContext.Provider>
           </>

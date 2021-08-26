@@ -4,23 +4,13 @@ import PredictionContext from '../../helper/PredictionContext';
 import { useHistory } from 'react-router-dom';
 
 export default function Home() {
-  const { predictions } = React.useContext(PredictionContext);
-  const [preds, setPreds] = React.useState([]);
+  const { predictionsArray } = React.useContext(PredictionContext);
   const history = useHistory();
   const colors = {
     bg: useColorModeValue('gray.100', 'gray.900'),
     text: useColorModeValue('black', 'white'),
   };
 
-  React.useEffect(() => {
-    const predList = [];
-    console.log(predictions.keys());
-    for (let pred of predictions.keys()) {
-      predList.push({ id: pred, ...predictions.get(pred) });
-    }
-    setPreds(predList);
-  }, []);
-  console.log(preds);
   return (
     <Container
       width="auto"
@@ -28,15 +18,20 @@ export default function Home() {
       bg={colors.bg}
       height="auto"
       maxHeight="100vh"
+      padding="10vh"
     >
       <Box display="flex" flexDirection="row" flexWrap="wrap">
-        {preds.map((pred) => {
+        {predictionsArray.map((pred, i) => {
           return (
             <Box
+              key={i}
               onClick={() => history.push('/predict/' + pred.id)}
               display="flex"
               maxWidth="300px"
-              border="1px"
+              border="1px solid"
+              borderRadius="15px"
+              padding="20px"
+              margin="10px"
             >
               <Text color={colors.text}>{pred.predictionName}</Text>
             </Box>
