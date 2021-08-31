@@ -36,7 +36,7 @@ const BuySellWindow = ({ id, options }) => {
 
     const contract = await wallet.at(CONTRACT_ADDRESS);
 
-    contract.methods.voteOnprediction(id, option.value).send({
+    contract.methods.voteOnprediction(0, '', id, option.value).send({
       amount: parseFloat(quantity.value) * 0.1,
     });
   };

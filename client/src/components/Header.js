@@ -18,12 +18,18 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon, SunIcon, MoonIcon } from '@chakra-ui/icons';
 import { useWallet } from '../helper/WalletContext';
+import { CONTRACT_ADDRESS, wallet } from '../helper/tezos';
 
 export default function Header({ links = [] }) {
   const history = useHistory();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { connect, disconnect, activeAccount, connected } = useWallet();
   const { colorMode, toggleColorMode } = useColorMode();
+
+  const whiteListProposer = async () => {
+    const contract = await wallet.at(CONTRACT_ADDRESS);
+    contract.methods.addProposers(activeAccount.address).send();
+  };
 
   return (
     <Box
@@ -67,6 +73,7 @@ export default function Header({ links = [] }) {
                   <MenuItem onClick={() => history.push('/mypreds')}>
                     My Predictions
                   </MenuItem>
+                  <MenuItem onClick={whiteListProposer}>Whitelist Me</MenuItem>
                   <MenuItem onClick={disconnect}>Disconnect</MenuItem>
                 </MenuList>
               </Menu>

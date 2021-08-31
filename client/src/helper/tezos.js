@@ -1,7 +1,7 @@
 import { NetworkType } from '@airgap/beacon-sdk';
 import { BeaconWallet } from '@taquito/beacon-wallet';
 import { TezosToolkit } from '@taquito/taquito';
-const CONTRACT_ADDRESS = 'KT1Mn8ogydUu3NpB1tztJ2QpPC9ms4MbJi5m';
+const CONTRACT_ADDRESS = 'KT1PQAiwKLQKN5CsPKvJeT2hbyKSQHKVjeVG';
 
 const Tezos = new TezosToolkit('https://api.tez.ie/rpc/granadanet');
 

@@ -7,6 +7,7 @@ import {
   FormControl,
   FormLabel,
   Input,
+  NumberInput,
   Popover,
   PopoverBody,
   PopoverContent,
@@ -23,6 +24,11 @@ import Loading from '../../helper/Loading';
 import { CONTRACT_ADDRESS, wallet } from '../../helper/tezos';
 
 const AddPredRes = ({ pred }) => {
+  const colors = {
+    bg: useColorModeValue('gray.200', 'gray.700'),
+    text: useColorModeValue('black', 'white'),
+  };
+
   const submit = async (e) => {
     e.preventDefault();
     const { option } = e.target.elements;
@@ -30,12 +36,15 @@ const AddPredRes = ({ pred }) => {
     const contract = await wallet.at(CONTRACT_ADDRESS);
     contract.methods.predictResults(pred.id, option.value).send();
   };
+
   return (
     <Popover returnFocusOnClose={false} placement="right" closeOnBlur={false}>
       <PopoverTrigger>
-        <Button marginLeft="10px">Result</Button>
+        <Button bg={colors.bg} textColor={colors.text} marginLeft="10px">
+          Result
+        </Button>
       </PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent textColor={colors.text}>
         <PopoverHeader fontWeight="semibold">
           Update Prediction Result
         </PopoverHeader>
@@ -71,6 +80,11 @@ const AddPredRes = ({ pred }) => {
 };
 
 const UpdatePredStatus = ({ pred }) => {
+  const colors = {
+    bg: useColorModeValue('gray.200', 'gray.700'),
+    text: useColorModeValue('black', 'white'),
+  };
+
   const submit = async (e) => {
     e.preventDefault();
     const { status } = e.target.elements;
@@ -81,9 +95,11 @@ const UpdatePredStatus = ({ pred }) => {
   return (
     <Popover returnFocusOnClose={false} placement="right" closeOnBlur={false}>
       <PopoverTrigger>
-        <Button>Update</Button>
+        <Button bg={colors.bg} textColor={colors.text}>
+          Update
+        </Button>
       </PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent textColor={colors.text}>
         <PopoverHeader fontWeight="semibold">
           Update Prediction Status
         </PopoverHeader>
@@ -96,6 +112,54 @@ const UpdatePredStatus = ({ pred }) => {
             <Button type="submit">Submit</Button>
           </form>
         </PopoverBody>
+      </PopoverContent>
+    </Popover>
+  );
+};
+
+const AddNewPrediction = () => {
+  const [num, setNum] = React.useState(0);
+  const { connected, connect, activeAccount } = useWallet();
+
+  const submit = async (e) => {
+    e.preventDefault();
+    const { status } = e.target.elements;
+
+    const contract = await wallet.at(CONTRACT_ADDRESS);
+    // contract.methods.updatepredictionStatus(pred.id, status.value).send();
+  };
+  return (
+    <Popover>
+      <PopoverTrigger>
+        <Button>Add New Prediction</Button>
+      </PopoverTrigger>
+      <PopoverContent>
+        <form onSubmit={submit}>
+          <FormControl>
+            <FormLabel htmlFor="prediction">Prediction</FormLabel>
+            <Text name="prediction" id="prediction"></Text>
+          </FormControl>
+          <FormControl>
+            <FormLabel htmlFor="resultRef">Result Reference</FormLabel>
+            <Text name="resultRef" id="resultRef"></Text>
+          </FormControl>
+          <FormControl>
+            <FormLabel htmlFor="start">Start</FormLabel>
+            <NumberInput name="start" id="start"></NumberInput>
+          </FormControl>
+          <FormControl>
+            <FormLabel htmlFor="end">End</FormLabel>
+            <NumberInput name="end" id="end"></NumberInput>
+          </FormControl>
+          <FormControl>
+            <FormLabel htmlFor="number_options">Number of Options</FormLabel>
+            <NumberInput
+              onChange={(e) => setNum(parseInt(e))}
+              name="number_options"
+              id="number_options"
+            ></NumberInput>
+          </FormControl>
+        </form>
       </PopoverContent>
     </Popover>
   );

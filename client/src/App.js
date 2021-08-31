@@ -13,7 +13,6 @@ import MyPreds from './components/Mypreds';
 function App() {
   const [predictions, setPredictions] = React.useState(null);
   const [predictionsArray, setPredictionsArray] = React.useState([]);
-
   const updatePredictions = (preds, predArray) => {
     setPredictions(preds);
     setPredictionsArray(predArray);
