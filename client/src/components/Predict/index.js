@@ -44,8 +44,8 @@ const BuySellWindow = ({ id, options }) => {
   return (
     <Tabs variant="soft-rounded" width="100%">
       <TabList>
-        <Tab>Buy</Tab>
-        <Tab isDisabled>Sell</Tab>
+        <Tab>Options</Tab>
+
       </TabList>
       <TabPanels>
         <TabPanel>
@@ -56,7 +56,7 @@ const BuySellWindow = ({ id, options }) => {
               flexDirection="column"
             >
               <Box margin="3">
-                <Text fontWeight="bold" fontSize="lg">
+                <Text fontWeight="bold" fontSize="md">
                   Pick an option
                 </Text>
                 <RadioGroup
@@ -134,23 +134,19 @@ export default function Predict({ id }) {
 
   React.useEffect(() => {
     const _ = predictions.get(id);
+	
     setData({
       prediction: _.predictionName,
       lastDate:
         new Date(_.endTime).toLocaleDateString() +
         ' ' +
         new Date(_.endTime).toLocaleTimeString(),
-      tradeVol: '-',
+	  key : id,
+	  ref : _.predictionRef,
+      pstatus : _.predictionStatus,
       liquidity: '-',
       options: _.predictionOptions,
-      disclosure: `Clarification: A redundant reference to smart contract "deployment" has been removed to clarify the resolution criteria of this market, which will resolve "Yes" if smart contract functionality is live by the resolution date.
-
-      This is a market on if Cardano Mainnet will be live and supporting smart contract functionality by October 1st, 2021, 12 PM ET. In Cardano’s official roadmap, this is referred to as Goguen. This market will resolve to "Yes" if it is possible to create and execute functional smart contracts on the Cardano network on a “Mainnet” by the resolution date. This does not include staking functionality or consensus mechanisms. In the event of ambiguity in terms of the market outcome, the market will be resolved in good faith at the sole discretion of the Markets Integrity Committee (MIC).
-      
-      Per the Cardano roadmap:
-      “With the integration of smart contracts, the Goguen era represents a big step forwards in capability for the Cardano network. Where the Shelley era decentralizes the core of the system, Goguen adds the ability to build decentralized applications (DApps) on Cardano’s solid foundation of peer-reviewed research and high-assurance development.”
-      
-      “This will allow the creation of fungible and non-fungible tokens, supporting the creation of new cryptocurrencies on Cardano as well as the tokenization of many types of digital and physical assets. Another benefit will be easier integration of smart contracts and DApps involving multiple cryptocurrencies.”`,
+      disclosure: "Predictor is for informational and educational purposes only. We take no custody of anyone's money or cryptocurrency. Predictor displays existing markets live on the Tezos blockchain and is a graphical user interface for both visualizing data and market trends from on-chain activity, and interacting with said smart contracts directly via your Web 3 enabled wallet.",
     });
   }, []);
 
@@ -185,19 +181,33 @@ export default function Predict({ id }) {
         borderColor={colors.border}
         overflow="hidden"
         display="flex"
-        flexDirection="row"
+        flexDirection="column"
         flexWrap="wrap"
       >
+	    <Text fontSize="sm">Prediction id:  {data.ref}     Token id:  {data.key} </Text>
+		
         <Text
           fontSize="lg"
           fontWeight="bold"
-          margin={{ base: '2', md: '4' }}
+          margin={{ base: '1', md: '1' }}
           maxWidth="lg"
           overflow="visible"
           textOverflow="clip"
         >
           {data.prediction}
         </Text>
+		</Box>
+        <Box
+		p="3"
+        maxW="max-content"
+        borderWidth="1px"
+        borderRadius="lg"
+        borderColor={colors.border}
+        overflow="hidden"
+        display="flex"
+        flexDirection="row"
+        flexWrap="wrap"
+      >
         <Box
           p="2"
           maxW="sm"
@@ -208,10 +218,10 @@ export default function Predict({ id }) {
           overflow="hidden"
           display="flex"
           flexDir="column"
-          margin={{ base: '2', md: '4' }}
+          margin={{ base: '0', md: '2' }}
         >
           <Text fontSize="sm">Last Date</Text>
-          <Text fontSize="xl">{data.lastDate}</Text>
+          <Text fontSize="l">{data.lastDate}</Text>
         </Box>
         <Box
           p="2"
@@ -223,10 +233,10 @@ export default function Predict({ id }) {
           overflow="hidden"
           display="flex"
           flexDir="column"
-          margin={{ base: '0.5', md: '4' }}
+          margin={{ base: '0', md: '2' }}
         >
-          <Text fontSize="sm">Trade Volume</Text>
-          <Text fontSize="xl">$ {data.tradeVol}</Text>
+          <Text fontSize="sm">Status</Text>
+          <Text fontSize="l">{data.pstatus}</Text>
         </Box>
         <Box
           p="2"
@@ -238,10 +248,10 @@ export default function Predict({ id }) {
           overflow="hidden"
           display="flex"
           flexDir="column"
-          margin={{ base: '0.5', md: '4' }}
+          margin={{ base: '0', md: '2' }}
         >
           <Text fontSize="sm">Liquidity</Text>
-          <Text fontSize="xl">$ {data.liquidity}</Text>
+          <Text fontSize="l">$ {data.liquidity}</Text>
         </Box>
       </Box>
       <Box
