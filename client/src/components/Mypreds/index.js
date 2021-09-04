@@ -119,46 +119,79 @@ const UpdatePredStatus = ({ pred }) => {
 
 const AddNewPrediction = () => {
   const [num, setNum] = React.useState(0);
-  const { connected, connect, activeAccount } = useWallet();
+  // const { connected, connect, activeAccount } = useWallet();
+  const [options, setOptions] = React.useState({});
 
   const submit = async (e) => {
     e.preventDefault();
-    const { status } = e.target.elements;
+    const { prediction, resultRef, start, end } = e.target.elements;
 
     const contract = await wallet.at(CONTRACT_ADDRESS);
-    // contract.methods.updatepredictionStatus(pred.id, status.value).send();
+
+    contract.methods
+      .addprediction(
+        parseInt(end.value),
+        resultRef.value,
+        prediction.value,
+        Object.keys(options).map((key) => options[key]),
+        parseInt(start.value)
+      )
+      .send();
   };
   return (
     <Popover>
       <PopoverTrigger>
         <Button>Add New Prediction</Button>
       </PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent padding="4">
         <form onSubmit={submit}>
           <FormControl>
             <FormLabel htmlFor="prediction">Prediction</FormLabel>
-            <Text name="prediction" id="prediction"></Text>
+            <Input name="prediction" id="prediction"></Input>
           </FormControl>
           <FormControl>
             <FormLabel htmlFor="resultRef">Result Reference</FormLabel>
-            <Text name="resultRef" id="resultRef"></Text>
+            <Input name="resultRef" id="resultRef"></Input>
           </FormControl>
           <FormControl>
             <FormLabel htmlFor="start">Start</FormLabel>
-            <NumberInput name="start" id="start"></NumberInput>
+            <Input type="number" name="start" id="start"></Input>
           </FormControl>
           <FormControl>
             <FormLabel htmlFor="end">End</FormLabel>
-            <NumberInput name="end" id="end"></NumberInput>
+            <Input type="number" name="end" id="end"></Input>
           </FormControl>
           <FormControl>
             <FormLabel htmlFor="number_options">Number of Options</FormLabel>
-            <NumberInput
-              onChange={(e) => setNum(parseInt(e))}
+            <Input
+              onChange={(e) => {
+                console.log(e);
+                setNum(parseInt(e.target.value) || 0);
+              }}
               name="number_options"
               id="number_options"
-            ></NumberInput>
+              type="number"
+            ></Input>
           </FormControl>
+          {[...Array(num).keys()].map((i) => {
+            return (
+              <FormControl>
+                <FormLabel htmlFor={'option_' + i}>Option {i}</FormLabel>
+                <Input
+                  onChange={(e) =>
+                    setOptions((options) => {
+                      var opt = options;
+                      opt[`option_${i}`] = e.target.value;
+                      return opt;
+                    })
+                  }
+                  name={`option_${i}`}
+                  id={`option_${i}`}
+                ></Input>
+              </FormControl>
+            );
+          })}
+          <Button type="submit">Submit</Button>
         </form>
       </PopoverContent>
     </Popover>
@@ -198,6 +231,7 @@ export default function MyPreds() {
       maxHeight="100vh"
       padding="10vh"
     >
+      <AddNewPrediction />
       <Box display="flex" flexDirection="row" flexWrap="wrap">
         {myPreds.map((pred, i) => {
           return (
