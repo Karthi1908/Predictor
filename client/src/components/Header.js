@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+
 import {
   Box,
   Flex,
@@ -45,9 +46,12 @@ export default function Header({ links = [] }) {
           display={{ md: 'none' }}
           onClick={isOpen ? onClose : onOpen}
         />
+		
         <HStack spacing={8} alignItems={'center'}>
-          <Box>Logo</Box>
+          <Box></Box>
         </HStack>
+		 <Text fontSize="3xl" colorScheme = "blue" fontWeight="bold">Predictor</Text>
+        
         <Flex alignItems={'center'}>
           <IconButton
             marginRight="10px"
