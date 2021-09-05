@@ -107,7 +107,28 @@ const UpdatePredStatus = ({ pred }) => {
           <form onSubmit={submit}>
             <FormControl>
               <FormLabel htmlFor={pred.id + '_status'}>Status</FormLabel>
-              <Input name="status" id={pred.id + '_status'}></Input>
+              <RadioGroup name="status">
+                <Stack direction="column">
+                  {[
+                    'Prediction In-Progress',
+                    'Prediction Ended',
+                    'Result Declared',
+                  ].map((option, i) => {
+                    return (
+                      <Radio key={i} value={option}>
+                        <Box
+                          borderWidth="1px"
+                          borderColor="gray.400"
+                          p="2"
+                          borderRadius="2xl"
+                        >
+                          {option}
+                        </Box>
+                      </Radio>
+                    );
+                  })}
+                </Stack>
+              </RadioGroup>
             </FormControl>
             <Button type="submit">Submit</Button>
           </form>
