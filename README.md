@@ -17,7 +17,7 @@ Predictor is a decentralized prediction market on Tezos with aim of becoming a t
 Predictor plans to benefit from the wisdom of the crowd. There are two sets of non mutually exclusive crowds in the Predictor Ecosystem. They are Predictors and Reporters.
 
 #### Reporters: ####
-    Reporters need to self-whitelist in the platform before performing any reporter related tasks. Initially, it is free but later the reporters need to post a stake. Reporters are the ones who post the predictions and they help also in checking the quality of others predictions posted. they need to be  If there are any duplicates or errors, they can vote to hold the predictions from being seen by others.  They also vote for the results for each prediction once the results are out. The result will be the options that get a supermajority of 80% of the votes of reporters within 24 hours of the result event has happened.
+  Reporters need to self-whitelist in the platform before performing any reporter related tasks. Initially, it is free but later the reporters need to post a stake. Reporters are the ones who post the predictions and they help also in checking the quality of others predictions posted. they need to be  If there are any duplicates or errors, they can vote to hold the predictions from being seen by others.  They also vote for the results for each prediction once the results are out. The result will be the options that get a supermajority of 80% of the votes of reporters within 24 hours of the result event has happened.
 
 #### Predictors: ####
   Predictors engage with the platform by buying the prediction tokens for the predictions. As prediction tokens are FA2 compliant, Predictors can trade in any DEXes in Tezos. Once the prediction results are out, they redeem their tokens for the winning amount in Tez.
@@ -45,5 +45,5 @@ Predictor Token Contract - KT1Hi7QVB3zV7tG4hNHE36vC8LuMywvtUJA6
 
 Version 2: Smart contract : [KT19UD96tNFP8bq7u6Wk4x4R5sEyfXTu6ETx](https://smartpy.io/explorer.html?address=KT19UD96tNFP8bq7u6Wk4x4R5sEyfXTu6ETx)
 
-Version 2: Token COntract : [KT1CFyf7vzF3EGT5UAvgNPtzkxoeLoQJf6qu](https://smartpy.io/explorer.html?address=KT1CFyf7vzF3EGT5UAvgNPtzkxoeLoQJf6qu)
+Version 2: Token Contract : [KT1CFyf7vzF3EGT5UAvgNPtzkxoeLoQJf6qu](https://smartpy.io/explorer.html?address=KT1CFyf7vzF3EGT5UAvgNPtzkxoeLoQJf6qu)
 
