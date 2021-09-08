@@ -24,8 +24,9 @@ Predictor is a decentralized prediction market on Tezos with aim of becoming a t
 
 ## Design:
 
-* Prediction Market - Parimutuel  way
-* Trustless Oracle – Schelling Points
+* Prediction Market - [Parimutuel Markets](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/viewer.html?pdfurl=https%3A%2F%2Fweb.stanford.edu%2F~yyye%2Fscpmfinal.pdf&clen=255689&chunk=true)
+
+* Trustless Oracle – [Schelling Points](https://blog.ethereum.org/2014/03/28/schellingcoin-a-minimal-trust-universal-data-feed)
 
 ## Users:
 
