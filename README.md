@@ -72,8 +72,7 @@ Following steps are planned for future
 3. Introduce the staking for Reporters.
 4. Option to create scalar predictions
 5. Add Reputation only Prediction Contracts. Here only non-tradable/ non - transferable tokens instead of tez will be provided to the winners which will represent their reputation.
-6. Closed group Predictions - It will enable Prediciton as a Service concept so that existing offline bookmakers can use Predictor's Platform for their use. It provides an option to people and organisations to bet on an event only among their acquaintances or families or friends or clients. The people outside group are restricted from trading the same contract.
-
+6. Closed group Predictions - an option to people and organisations to bet on an event only among their acquaintances or clients. The people outside group are restricted from trading the same contract. It will enable Prediciton as a Service concept so that existing offline bookmakers can use Predictor's Platform for their use. 
 
 ### Smart Contracts
 
