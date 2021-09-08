@@ -12,9 +12,20 @@ A prediction market is a place to buy and sell predictions /opinions/forecasts e
 
 Predictor is a decentralized prediction market on Tezos with aim of becoming a trustless oracle for data that is not actively available like climate change, carbon prices, the spread of infectious disease. The main aim of Predictor is to democratize and decentralize the true knowledge for actionable inputs. 
 
-## Goals:
+## Mission:
 
+1. To become Universal Forecasting Tool so that it is preferred paltform for any or all kinds of predictions
 
+2. To enable all users to monetize knowledge and gain reputation so that people can identify the real experts in the crowd.
+
+3. To create awareness on Social and Environmental Issues by running predictions on climate changes incidents, temperatures, carbon prices, covid counts so that people are aware of the seriousness of the prevailing conditions
+
+4. To provide unbiased value discovery .
+
+## Design:
+
+Prediction Market - Parimutuel  way
+Trustless Oracle – Schelling Points
 
 ## Users:
 
@@ -60,7 +71,7 @@ Following steps are planned for future
 2. Integrating with oracle for market data. So the any prediction on market data will be reolved by the oracle iteslef.
 3. Introduce the staking for Reporters.
 4. Option to create scalar predictions
-5. Add Reputation only Prediction Contracts ( without redemption). Here only non-tradable/ non - transferable tokens will be provided to the winners which will represent their reputation.
+5. Add Reputation only Prediction Contracts. Here only non-tradable/ non - transferable tokens instead of tez will be provided to the winners which will represent their reputation.
 6. Closed group Predictions - It will enable Prediciton as a Service concept so that existing offline bookmakers can use Predictor's Platform for their use. It provides an option to people and organisations to bet on an event only among their acquaintances or families or friends or clients. The people outside group are restricted from trading the same contract.
 
 
