@@ -22,6 +22,10 @@ function App() {
     ContractProvider.at(CONTRACT_ADDRESS).then(async (contract) => {
       const storage = await contract.storage();
       const predictions = storage.predictions;
+      // for (let key of storage.predictTokenDetails.keys()) {
+      //   console.log(key);
+      //   console.log(storage.predictTokenDetails.get(key));
+      // }
       const predList = [];
       for (let pred of predictions.keys()) {
         predList.push({ id: pred, ...predictions.get(pred) });

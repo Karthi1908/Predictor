@@ -36,16 +36,20 @@ const BuySellWindow = ({ id, options }) => {
 
     const contract = await wallet.at(CONTRACT_ADDRESS);
 
-    contract.methods.voteOnprediction(0, '', id, option.value).send({
-      amount: parseFloat(quantity.value) * 0.1,
-    });
+    contract.methods
+      .voteOnprediction(0, '', id, option.value)
+      .send({
+        amount: parseFloat(quantity.value) * 0.1,
+      })
+      .then((res) => {
+        console.log(res);
+      });
   };
 
   return (
     <Tabs variant="soft-rounded" width="100%">
       <TabList>
         <Tab>Options</Tab>
-
       </TabList>
       <TabPanels>
         <TabPanel>
@@ -134,19 +138,20 @@ export default function Predict({ id }) {
 
   React.useEffect(() => {
     const _ = predictions.get(id);
-	
+
     setData({
       prediction: _.predictionName,
       lastDate:
         new Date(_.endTime).toLocaleDateString() +
         ' ' +
         new Date(_.endTime).toLocaleTimeString(),
-	  key : id,
-	  ref : _.predictionRef,
-      pstatus : _.predictionStatus,
+      key: id,
+      ref: _.predictionRef,
+      pstatus: _.predictionStatus,
       liquidity: '-',
       options: _.predictionOptions,
-      disclosure: "Predictor is for informational and educational purposes only. We take no custody of anyone's money or cryptocurrency. Predictor displays existing markets live on the Tezos blockchain and is a graphical user interface for both visualizing data and market trends from on-chain activity, and interacting with said smart contracts directly via your Web 3 enabled wallet.",
+      disclosure:
+        "Predictor is for informational and educational purposes only. We take no custody of anyone's money or cryptocurrency. Predictor displays existing markets live on the Tezos blockchain and is a graphical user interface for both visualizing data and market trends from on-chain activity, and interacting with said smart contracts directly via your Web 3 enabled wallet.",
     });
   }, []);
 
@@ -184,8 +189,10 @@ export default function Predict({ id }) {
         flexDirection="column"
         flexWrap="wrap"
       >
-	    <Text fontSize="sm">Prediction id:  {data.ref}     Token id:  {data.key} </Text>
-		
+        <Text fontSize="sm">
+          Prediction id: {data.ref} Token id: {data.key}{' '}
+        </Text>
+
         <Text
           fontSize="lg"
           fontWeight="bold"
@@ -196,9 +203,9 @@ export default function Predict({ id }) {
         >
           {data.prediction}
         </Text>
-		</Box>
-        <Box
-		p="3"
+      </Box>
+      <Box
+        p="3"
         maxW="max-content"
         borderWidth="1px"
         borderRadius="lg"
