@@ -148,7 +148,7 @@ export default function Predict({ id }) {
       key: id,
       ref: _.predictionRef,
       pstatus: _.predictionStatus,
-      liquidity: '-',
+      pvolume: _.volume.toString(),
       options: _.predictionOptions,
       disclosure:
         "Predictor is for informational and educational purposes only. We take no custody of anyone's money or cryptocurrency. Predictor displays existing markets live on the Tezos blockchain and is a graphical user interface for both visualizing data and market trends from on-chain activity, and interacting with said smart contracts directly via your Web 3 enabled wallet.",
@@ -189,9 +189,7 @@ export default function Predict({ id }) {
         flexDirection="column"
         flexWrap="wrap"
       >
-        <Text fontSize="sm">
-          Prediction id: {data.ref} Token id: {data.key}{' '}
-        </Text>
+        <Text fontSize="sm">Prediction id: {data.ref} </Text>
 
         <Text
           fontSize="lg"
@@ -257,8 +255,8 @@ export default function Predict({ id }) {
           flexDir="column"
           margin={{ base: '0', md: '2' }}
         >
-          <Text fontSize="sm">Liquidity</Text>
-          <Text fontSize="l">$ {data.liquidity}</Text>
+          <Text fontSize="sm">Volume</Text>
+          <Text fontSize="l">${data.pvolume}</Text>
         </Box>
       </Box>
       <Box
