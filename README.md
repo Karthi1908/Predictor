@@ -26,16 +26,25 @@ Predictor plans to benefit from the wisdom of the crowd. There are two sets of n
 
 Predictor follows the Parimutuel way of betting. So the odds for each option is not known in the beginning and can be deduced only after the prediction is closed. The workflow is as follows
 
+#### Proposal Stage
 1. A Reporter enters a prediction
 2. Other Reporters validate the prediction 
 3. If there is no issue, prediction is opened for trading
+
+#### Prediction Stage
 4. Predictors pick their favourite option for the given prediction by buying the corresponding tokens (by paying tez)
 5. All the tez get accumulated in the pool.
 6. After the scheduled the prediction is closed. The odds of each option is calculated. 
-7. However, the Predictor can trade their tokens in any DEX any time before or after the prediction are closed.
+
+#### Trading Stage
+7. However, the Predictor trade their tokens in any DEX any time before or after the prediction are closed.
 8. Prediction event occurs and the results are known.
+
+#### Reporting Stage
 9. Reporters report the result by voting on the results. 
 10. The option with supermajority is declared the final result
+
+#### Redemption Stage
 11. Predictors with the winning tokens redeem their tokens for tez.
 
 
