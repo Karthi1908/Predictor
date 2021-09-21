@@ -4,6 +4,8 @@
 
 In the age of information overload, it has become very difficult to distinguish between real and fake news as there is no incentive to stand with the truth other than going with the popular narrative. Also with the advent of social media, all people with or without knowledge are able to provide expert opinions on all subjects ranging from politics, sports, medical and space technologies. It is good to have a variety of opinions but the issue comes up with the veracity of the opinions.to solve this issue we have the Prediction Markets which act as a gauge to assimilate different opinions and find out the most reliable one.
 
+https://www.loom.com/share/541c16c89e754e8c858c7ab02840ed4c?t=0
+
 ## Prediction Markets
 
 A prediction market is a place to buy and sell predictions /opinions/forecasts etc. Or to be precise, shares in predictions. In the stock market, you get shares in a company that you believe will perform good and provide returns in form of dividends and capital appreciation. Similarly in a prediction market, you buy shares in an event outcome that you believe to happen. This could be any future event like whether Cuffe parade, Mumbai will submerge in the Arabian sea by Jan 2030 or who will win the IPL2021 or will the price of carbon in European Carbon market will breach 100 by Jan 2022.
