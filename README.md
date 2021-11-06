@@ -1,5 +1,7 @@
 # Predictor
 
+Please read the license file before proceeding.
+
 ## Introduction :
 
 In the age of information overload, it has become very difficult to distinguish between real and fake news as there is no incentive to stand with the truth other than going with the popular narrative. Also with the advent of social media, all people with or without knowledge are able to provide expert opinions on all subjects ranging from politics, sports, medical and space technologies. It is good to have a variety of opinions but the issue comes up with the veracity of the opinions.to solve this issue we have the Prediction Markets which act as a gauge to assimilate different opinions and find out the most reliable one.
