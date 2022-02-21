@@ -1,54 +1,39 @@
 {
-  "name": "tezasia",
-  "version": "0.1.0",
-  "private": true,
+  "name": "predictor",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "main": "src/index.js",
   "dependencies": {
-    "@airgap/beacon-sdk": "^2.3.1",
-    "@chakra-ui/gatsby-plugin": "^2.0.1",
-    "@chakra-ui/icons": "^1.0.15",
-    "@chakra-ui/react": "^1.6.6",
-    "@craco/craco": "^6.2.0",
-    "@emotion/react": "^11",
-    "@emotion/styled": "^11",
-    "@taquito/beacon-wallet": "^10.0.0",
-    "@taquito/taquito": "^10.1.0",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
+    "@airgap/beacon-sdk": "2.3.9",
+    "@chakra-ui/core": "0.8.0",
+    "@chakra-ui/icons": "latest",
+    "@chakra-ui/react": "^1.8.3",
+    "@emotion/core": "latest",
+    "@emotion/react": "latest",
+    "@emotion/styled": "latest",
+    "@taquito/beacon-wallet": "latest",
+    "emotion-theming": "latest",
     "framer-motion": "^4.1.17",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
-    "web-vitals": "^1.0.1"
-  },
-  "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-router-dom": "6.2.1",
+    "react-scripts": "4.0.2",
+    "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "autoprefixer": "^9.8.6",
-    "postcss": "^7.0.36",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.7"
-  }
+    "typescript": "3.8.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
