@@ -34,7 +34,7 @@ const AddPredRes = ({ pred }) => {
     const { option } = e.target.elements;
     console.log(option.value);
     const contract = await wallet.at(CONTRACT_ADDRESS);
-    contract.methods.predictResults(pred.id, option.value).send();
+    contract.methods.predictResults(pred.predictionRef, option.value).send();
   };
 
   return (
@@ -83,14 +83,15 @@ const UpdatePredStatus = ({ pred }) => {
   const colors = {
     bg: useColorModeValue('gray.200', 'gray.700'),
     text: useColorModeValue('black', 'white'),
+	
   };
 
   const submit = async (e) => {
     e.preventDefault();
     const { status } = e.target.elements;
-
+	
     const contract = await wallet.at(CONTRACT_ADDRESS);
-    contract.methods.updatepredictionStatus(pred.id, status.value).send();
+    contract.methods.updateStatus(pred.predictionRef, status.value).send();
   };
   return (
     <Popover returnFocusOnClose={false} placement="right" closeOnBlur={false}>
@@ -148,14 +149,16 @@ const AddNewPrediction = () => {
     const { prediction, resultRef, start, end } = e.target.elements;
 
     const contract = await wallet.at(CONTRACT_ADDRESS);
+	const endValue = new Date(end.value).toISOString();
+	const startValue = new Date(start.value).toISOString();
 
     contract.methods
       .addprediction(
-        parseInt(end.value),
+        endValue,
         resultRef.value,
         prediction.value,
         Object.keys(options).map((key) => options[key]),
-        parseInt(start.value)
+        startValue
       )
       .send();
   };
@@ -176,11 +179,11 @@ const AddNewPrediction = () => {
           </FormControl>
           <FormControl>
             <FormLabel htmlFor="start">Start</FormLabel>
-            <Input type="number" name="start" id="start"></Input>
+            <Input type="datetime-local" name="start" id="start"></Input>
           </FormControl>
           <FormControl>
             <FormLabel htmlFor="end">End</FormLabel>
-            <Input type="number" name="end" id="end"></Input>
+            <Input type="datetime-local" name="end" id="end"></Input>
           </FormControl>
           <FormControl>
             <FormLabel htmlFor="number_options">Number of Options</FormLabel>
@@ -234,9 +237,16 @@ export default function MyPreds() {
         await connect();
       }
       if (activeAccount) {
-        const _ = predictionsArray.filter(
-          (item) => item.proposer === activeAccount.address
-        );
+
+        const _ = []; 
+		for ( let x = 0 ; x < predictionsArray.length ; x++) {
+			  
+			  let item = predictionsArray[x].value;
+			 if (item.proposer === activeAccount.address) {
+				_.push(item);
+				
+			 }
+		}
         console.log(_);
         setMyPreds(_);
       }

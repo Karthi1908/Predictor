@@ -128,6 +128,7 @@ const BuySellWindow = ({ id, options }) => {
   );
 };
 
+
 export default function Predict() {
   
   let { id } = useParams();
@@ -142,10 +143,25 @@ export default function Predict() {
     cardBg: useColorModeValue('gray.200', 'gray.700'),
   };
 
-  React.useEffect(() => {
-    const _ = predictions.get(id);
+  React.useEffect(async () => {
+    const _ = await predictions.get(id).then(value => {return value});
+	const contract = await wallet.at(CONTRACT_ADDRESS);
+		const storage = await contract.storage();
+		const snapshot = await storage.predictionVoteSnapshot.get(id).then(value => {return value});
+		const snapshotList = [];
+		
+		for (let pred of snapshot.keys()) {
+			if (pred != 'Total') {			  
+		  snapshotList.push({ id: pred, value: (Math.round(snapshot.get(pred) * 100 / snapshot.get('Total'))).toString() }); }
+		  
+		  console.log(snapshotList);
+		  
+      }
+	  
+	  let volume = snapshot.get('Total').toString();
+	  console.log("volume :", volume);
 
-    setData({
+	setData({
       prediction: _.predictionName,
       lastDate:
         new Date(_.endTime).toLocaleDateString() +
@@ -154,8 +170,10 @@ export default function Predict() {
       key: id,
       ref: _.predictionRef,
       pstatus: _.predictionStatus,
-      //pvolume: _.volume.toString(),
       options: _.predictionOptions,
+	  snap : snapshotList,
+	  Volume : volume,
+
       disclosure:
         "Predictor is for informational and educational purposes only. We take no custody of anyone's money or cryptocurrency. Predictor displays existing markets live on the Tezos blockchain and is a graphical user interface for both visualizing data and market trends from on-chain activity, and interacting with said smart contracts directly via your Web 3 enabled wallet.",
     });
@@ -231,7 +249,7 @@ export default function Predict() {
           flexDir="column"
           margin={{ base: '0', md: '2' }}
         >
-          <Text fontSize="sm">Last Date</Text>
+          <Text fontSize="sm">Open Till</Text>
           <Text fontSize="l">{data.lastDate}</Text>
         </Box>
         <Box
@@ -249,23 +267,55 @@ export default function Predict() {
           <Text fontSize="sm">Status</Text>
           <Text fontSize="l">{data.pstatus}</Text>
         </Box>
-        <Box
-          p="2"
-          maxW="sm"
-          borderWidth="1px"
-          borderRadius="lg"
-          borderColor={colors.border}
-          bg={colors.cardBg}
-          overflow="hidden"
-          display="flex"
-          flexDir="column"
-          margin={{ base: '0', md: '2' }}
-        >
-          <Text fontSize="sm">Volume</Text>
-          <Text fontSize="l">${data.pvolume}</Text>
-        </Box>
+
       </Box>
-      <Box
+	  <Text fontSize="sm">Volume :</Text>
+         <Box p="2"
+					maxW="sm"
+					borderWidth="1px"
+					borderRadius="lg"
+					borderColor={colors.border}
+
+					overflow="hidden"
+					display="flex"
+					flexDir="row" flexWrap="wrap">
+					
+		  <Box p="2"
+					maxW="sm"
+					borderWidth="1px"
+					borderRadius="lg"
+					borderColor={colors.border}
+					bg={colors.cardBg}
+					overflow="hidden"
+					display="flex"
+					flexDir="row"
+					margin={{ base: '0', md: '1' }}>
+		  <Text color={colors.text}>Total : &nbsp;</Text>
+		  <Text color={colors.text}>{data.Volume} Tez</Text>
+		  </Box>
+		 
+        {data.snap.map((pred, i) => {
+          return (
+           
+				<Box p="2"
+					maxW="sm"
+					borderWidth="1px"
+					borderRadius="lg"
+					borderColor={colors.border}
+					bg={colors.cardBg}
+					overflow="hidden"
+					display="flex"
+					flexDir="row"
+					margin={{ base: '0', md: '1' }}>
+              <Text color={colors.text}>{pred.id} : &nbsp;</Text>
+			  
+			  <Text color={colors.text}>{pred.value} %</Text>
+			  </Box>
+   
+          );
+        })}
+      </Box>
+	  <Box
         margin="6"
         p={{ base: '2', md: '6' }}
         maxW="max-content"
@@ -279,8 +329,12 @@ export default function Predict() {
       >
         <BuySellWindow id={id} options={data.options} />
       </Box>
+
     </Container>
   ) : (
     <Loading />
   );
 }
+
+
+
