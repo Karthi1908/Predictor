@@ -34,7 +34,6 @@ import {
 import { HamburgerIcon, CloseIcon, SunIcon, MoonIcon } from '@chakra-ui/icons';
 import { useWallet } from '../helper/WalletContext';
 import { CONTRACT_ADDRESS, TOKEN_ADDRESS, wallet,Tezos } from '../helper/tezos';
-import { Tzip12Module, tzip12 } from "@taquito/tzip12";
 import { TezosToolkit, MichelCodecPacker, compose } from '@taquito/taquito';
 import Loading from '../helper/Loading';
 
@@ -193,7 +192,7 @@ export default function Header({ links = [] }) {
 const Portfolio = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const colors = {
-    bg: useColorModeValue('pink.100', 'pink.900'),
+    bg: useColorModeValue('purple.100', 'purple.700'),
     text: useColorModeValue('blue', 'white'),
 	
   };
