@@ -23,6 +23,12 @@ import {
   ModalHeader,
   ModalBody,
   FormControl,
+  FormLabel,
+  Popover,
+  PopoverBody,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTrigger,
   Input,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon, SunIcon, MoonIcon } from '@chakra-ui/icons';
@@ -30,6 +36,7 @@ import { useWallet } from '../helper/WalletContext';
 import { CONTRACT_ADDRESS, TOKEN_ADDRESS, wallet,Tezos } from '../helper/tezos';
 import { Tzip12Module, tzip12 } from "@taquito/tzip12";
 import { TezosToolkit, MichelCodecPacker, compose } from '@taquito/taquito';
+import Loading from '../helper/Loading';
 
 
 
@@ -94,8 +101,8 @@ export default function Header({ links = [] }) {
 
   return (
     <Box
-      color={useColorModeValue('black', 'white')}
-      bg={useColorModeValue('gray.100', 'gray.900')}
+      color={useColorModeValue('purple', 'white')}
+      bg={useColorModeValue('purple.100', 'purple.900')}
       px={4}
     >
       <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
@@ -141,7 +148,7 @@ export default function Header({ links = [] }) {
                   </MenuItem>
                   <MenuItem onClick={whiteListProposer}>Whitelist Me</MenuItem>
                   <MenuItem onClick={disconnect}>Disconnect</MenuItem>
-				  <PortfolioDetails />
+				  <Portfolio />
                   <Redeem />
                 </MenuList>
               </Menu>
@@ -183,12 +190,17 @@ export default function Header({ links = [] }) {
 }
 
 
-const PortfolioDetails = () => {
+const Portfolio = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
+	const colors = {
+    bg: useColorModeValue('pink.100', 'pink.900'),
+    text: useColorModeValue('blue', 'white'),
+	
+  };
 	const { connect, disconnect, activeAccount, connected } = useWallet();
-	//const [data, setData] = React.useState(null);
+	const [data, setData] = React.useState(null);
 	let ledger = [];
-	const portfolio = async () => {
+	React.useEffect( async () => {
 		if (!connected) {
 			await connect();
 		}
@@ -205,39 +217,109 @@ const PortfolioDetails = () => {
 			for (let tokenId = tokens.length-1 ; tokenId>=0; tokenId--) {	
 				console.log(tokenId,tokens[tokenId]);
 				await tokenLedger.get([activeAccount.address, tokens[tokenId]])
-					.then(value => { ledger.push({id:tokens[tokenId], balance: value.toString()})})
+					.then(value => { if(value > 0) {ledger.push({id:tokens[tokenId], balance: value.toString()})}})
 					.catch(error => console.log(`Error: ${tokens[tokenId]} ${activeAccount.address}`));
 				console.log(ledger)
 
 			};
+			
+			setData(ledger);
 		};
 	
-	}
-	return(
+	},[activeAccount]);
+	return data ?(
+	<>
+      <MenuItem onClick={onOpen}>Portfolio</MenuItem>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Portfolio Details</ModalHeader>
+          <ModalBody>
 	
-    <>
-      <MenuItem onClick={portfolio}>Portfolio</MenuItem>
-      		<Box display="flex" flexDirection="row" flexWrap="wrap">
-				{ledger.map((pred, i) => {
+			<Text color={colors.text}> <b> Portfolio </b> </Text>
+			
+      		<Box display="flex" flexDirection="column" flexWrap="wrap">
+				{data.map((pred, i) => {
 					return (
 						<Box
 							key={i}
-			    			// onClick={}
+			    			//onClick={}
 							display="flex"
-							maxWidth="300px"
-							flexDirection="column"
-							border="1px solid"
+							maxWidth="400px"
+							flexDirection="row"
+							border="0px solid"
 							borderRadius="15px"
-							padding="20px"
-							margin="10px"
+							padding="5px"
+							margin="5px"
 						>
-								<Text color={colors.text}>{pred.id}</Text>
-								<Text color={colors.text}>{pred.balance}</Text>
+								<Text color={colors.text}>Token id &nbsp;: &nbsp; {pred.id} &nbsp; |&nbsp;</Text>
+								<Text color={colors.text}>Balance &nbsp; : &nbsp; {pred.balance}&emsp;</Text>
+								<Redeem1 tokenID={pred.id} />
 						</Box>
 		            );
                 })}
 			</Box>
+			</ModalBody>
+        </ModalContent>
+      </Modal>
     </>
+ 
+  ):(
+    <Loading />
   );
 };
+
+const Redeem1 = (tokenID) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+	console.log("tokenId", tokenID.tokenID.toString());
+	const colors = {
+    bg: useColorModeValue('purple.300', 'purple.600'),
+    text: useColorModeValue('purple', 'white'),}
+  const submit = async (e) => {
+    e.preventDefault();
+    const { amount } = e.target.elements;
+    console.log(tokenID.tokenID, amount.value);
+    const contract = await wallet.at(CONTRACT_ADDRESS);
+
+    await contract.methods
+      .redeemTokens(amount.value, tokenID.tokenID)
+      .send();
+  };
+
+  return (
+     
+      <Popover returnFocusOnClose={false} placement="right" closeOnBlur={false}>
+      <PopoverTrigger>
+        <Button bg={colors.bg} textColor={colors.text}>
+          Redeem
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent textColor={colors.text}>
+        <PopoverHeader fontWeight="semibold">
+          Redeem Token
+        </PopoverHeader>
+        <PopoverBody>
+            <form onSubmit={submit}>
+             <FormControl>
+            <FormLabel htmlFor="tokenID">Token Id : {tokenID.tokenID.toString()} </FormLabel>
+            
+          </FormControl>
+              <FormControl>
+                <Input
+                  required
+                  type="number"
+                  name="amount"
+                  placeholder="Amount"
+                />
+              </FormControl>
+              <Button type="submit">Redeem</Button>
+            </form>
+       </PopoverBody>
+      </PopoverContent>
+    </Popover>
+  
+  );
+};
+
+	
 	

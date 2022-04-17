@@ -41,7 +41,7 @@ const BuySellWindow = ({ id, options }) => {
     contract.methods
       .voteOnprediction(id, option.value)
       .send({
-        amount: parseFloat(quantity.value) ,
+        amount: parseFloat(quantity.value / 100) ,
       })
       .then((res) => {
         console.log(res);
@@ -137,10 +137,10 @@ export default function Predict() {
   const { predictions } = React.useContext(PredictionContext);
   const [data, setData] = React.useState(null);
   const colors = {
-    bg: useColorModeValue('gray.100', 'gray.900'),
-    text: useColorModeValue('black', 'white'),
-    border: useColorModeValue('gray.400', ''),
-    cardBg: useColorModeValue('gray.200', 'gray.700'),
+    bg: useColorModeValue('blue.100', 'blue.900'),
+    text: useColorModeValue('blue', 'white'),
+    border: useColorModeValue('purple.900', 'purple.100'),
+    cardBg: useColorModeValue('blue.200', 'blue.700'),
   };
 
   React.useEffect(async () => {
@@ -158,7 +158,7 @@ export default function Predict() {
 		  
       }
 	  
-	  let volume = snapshot.get('Total').toString();
+	  let volume = (snapshot.get('Total') / 100).toString();
 	  console.log("volume :", volume);
 
 	setData({

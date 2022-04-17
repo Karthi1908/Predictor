@@ -7,8 +7,8 @@ export default function Home() {
   const { predictionsArray } = React.useContext(PredictionContext);
   const history = useNavigate();
   const colors = {
-    bg: useColorModeValue('purple.100', 'purple.900'),
-    text: useColorModeValue('black', 'white'),
+    bg: useColorModeValue('blue.100', 'blue.900'),
+    text: useColorModeValue('blue', 'white'),
   };
 
   return (
@@ -29,14 +29,16 @@ export default function Home() {
               display="flex"
               maxWidth="500px"
               border="1px solid"
+			  borderColor="purple.400"
               borderRadius="20px"
               padding="20px"
               margin="10px"
             >
 				<Box display="flex" flexDirection="column" flexWrap="wrap">
-              <Text color={colors.text}>Prediction : {pred.value.predictionName}</Text>
+              <Text color={colors.text}> <b>ID </b>: {pred.value.predictionRef}</Text>
+			  <Text color={colors.text}> <b>  {pred.value.predictionName} </b> </Text>
 			  
-			  <Text color={colors.text}>Status : {pred.value.predictionStatus}</Text>
+			  <Text color={colors.text}><b>Status </b>: {pred.value.predictionStatus}</Text>
 			  </Box>
             </Box>
           );
