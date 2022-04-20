@@ -48,9 +48,12 @@ const Redeem = () => {
     console.log(tokenId.value, amount.value);
     const contract = await wallet.at(CONTRACT_ADDRESS);
 
-    await contract.methods
+    const op = await contract.methods
       .redeemTokens(parseInt(amount.value), parseInt(tokenId.value))
       .send();
+	await op.confirmation(1);
+    alert("Redemption Completed!");  
+	
   };
 
   return (
@@ -95,7 +98,10 @@ export default function Header({ links = [] }) {
 
   const whiteListProposer = async () => {
     const contract = await wallet.at(CONTRACT_ADDRESS);
-    contract.methods.addProposers(activeAccount.address).send();
+    const op1 = await contract.methods.addProposers(activeAccount.address).send();
+	
+	await op1.confirmation(1);
+    alert("Proposer Whitelisted!");  
   };  
 
   return (

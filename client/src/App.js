@@ -23,13 +23,16 @@ function App() {
     ContractProvider.at(CONTRACT_ADDRESS).then(async (contract) => {
       const storage = await contract.storage();
       const predictions = storage.predictions;
+	  const counter = storage.Id;
+	  const predList = [];
       // for (let key of storage.predictTokenDetails.keys()) {
       //   console.log(key);
       //   console.log(storage.predictTokenDetails.get(key));
       // }
-      const predList = [];
-      for (let pred of predictions.keys()) {
-        predList.push({ id: pred, ...predictions.get(pred) });
+      for (let pred =10; pred < counter; pred++  ) {
+	  	 await predictions.get(pred).then(value => { predList.push({ id: pred, value }) });
+		 
+      
       }
       updatePredictions(predictions, predList);
 	

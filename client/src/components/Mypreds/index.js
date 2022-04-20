@@ -34,7 +34,9 @@ const AddPredRes = ({ pred }) => {
     const { option } = e.target.elements;
     console.log(option.value);
     const contract = await wallet.at(CONTRACT_ADDRESS);
-    contract.methods.predictResults(pred.predictionRef, option.value).send();
+    const result = await contract.methods.predictResults(pred.predictionRef, option.value).send();
+	await result.confirmation(1);
+    alert("Result Updated!");  
   };
 
   return (
@@ -91,7 +93,9 @@ const UpdatePredStatus = ({ pred }) => {
     const { status } = e.target.elements;
 	
     const contract = await wallet.at(CONTRACT_ADDRESS);
-    contract.methods.updateStatus(pred.predictionRef, status.value).send();
+    const st = await contract.methods.updateStatus(pred.predictionRef, status.value).send();
+	st.confirmation();
+	alert("Status Updated!"); 
   };
   return (
     <Popover returnFocusOnClose={false} placement="right" closeOnBlur={false}>
@@ -153,7 +157,7 @@ const AddNewPrediction = () => {
 	const endValue = new Date(end.value).toISOString();
 	const startValue = new Date(start.value).toISOString();
 
-    contract.methods
+    const op = await contract.methods
       .addprediction(
         endValue,
         resultRef.value,
@@ -161,7 +165,9 @@ const AddNewPrediction = () => {
         Object.keys(options).map((key) => options[key]),
         startValue
       )
-      .send();
+      .send({amount : 2});
+	await op.confirmation(1);
+    alert("Prediction Created!");
   };
   return (
     <Popover>
@@ -232,18 +238,24 @@ export default function MyPreds() {
     text: useColorModeValue('blue', 'white'),
   };
 
+  
+
   React.useEffect(() => {
     (async function () {
       if (!connected) {
         await connect();
       }
+	    const contract = await wallet.at(CONTRACT_ADDRESS);
+		const storage = await contract.storage();
+		const admin = storage.admin;
+		console.log(admin);
       if (activeAccount) {
 
         const _ = []; 
 		for ( let x = 0 ; x < predictionsArray.length ; x++) {
 			  
 			  let item = predictionsArray[x].value;
-			 if (item.proposer === activeAccount.address) {
+			 if (item.proposer === activeAccount.address || admin === activeAccount.address) {
 				_.push(item);
 				
 			 }

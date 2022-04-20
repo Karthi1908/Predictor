@@ -38,14 +38,14 @@ const BuySellWindow = ({ id, options }) => {
     const contract = await wallet.at(CONTRACT_ADDRESS);
 	id = Number(id);
 
-    contract.methods
+    const op = await contract.methods
       .voteOnprediction(id, option.value)
       .send({
         amount: parseFloat(quantity.value / 100) ,
       })
-      .then((res) => {
-        console.log(res);
-      });
+      
+	await op.confirmation(1);
+    alert("Transaction Completed!");  
   };
 
   return (

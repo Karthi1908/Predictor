@@ -17,8 +17,8 @@ export default function Home() {
       maxWidth="100vw"
       bg={colors.bg}
       height="auto"
-      maxHeight="100vh"
-      padding="10vh"
+      maxHeight="1000vh"
+      padding="5vh"
     >
       <Box display="flex" flexDirection="row" flexWrap="wrap">
         {predictionsArray.map((pred, i) => {
@@ -27,7 +27,7 @@ export default function Home() {
               key={i}
               onClick={() => history('/predict/' + pred.id)}
               display="flex"
-              maxWidth="500px"
+              maxWidth="200px"
               border="1px solid"
 			  borderColor="purple.400"
               borderRadius="20px"
@@ -36,8 +36,7 @@ export default function Home() {
             >
 				<Box display="flex" flexDirection="column" flexWrap="wrap">
               <Text color={colors.text}> <b>ID </b>: {pred.value.predictionRef}</Text>
-			  <Text color={colors.text}> <b>  {pred.value.predictionName} </b> </Text>
-			  
+			  <Text color='orange'>  {pred.value.predictionName} </Text>			  
 			  <Text color={colors.text}><b>Status </b>: {pred.value.predictionStatus}</Text>
 			  </Box>
             </Box>
