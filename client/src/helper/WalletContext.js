@@ -20,8 +20,8 @@ const useWallet = () => {
     if (!currAcc) {
       const req = await beaconWallet.client.requestPermissions({
         network: {
-          type: 'ithacanet',
-		  rpcUrl: 'https://ithacanet.smartpy.io'
+          type: 'mainnet',
+		  rpcUrl: 'https://mainnet.smartpy.io'
         },
       });
       if (req) {
