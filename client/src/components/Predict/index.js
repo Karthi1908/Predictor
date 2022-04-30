@@ -169,6 +169,7 @@ export default function Predict() {
         new Date(_.endTime).toLocaleTimeString(),
       key: id,
       ref: _.predictionRef,
+	  result: _.predictionVoteResult,
       pstatus: _.predictionStatus,
       options: _.predictionOptions,
 	  snap : snapshotList,
@@ -266,6 +267,21 @@ export default function Predict() {
         >
           <Text fontSize="sm">Status</Text>
           <Text fontSize="l">{data.pstatus}</Text>
+        </Box>
+		<Box
+          p="2"
+          maxW="sm"
+          borderWidth="1px"
+          borderRadius="lg"
+          borderColor={colors.border}
+          bg={colors.cardBg}
+          overflow="hidden"
+          display="flex"
+          flexDir="column"
+          margin={{ base: '0', md: '2' }}
+        >
+          <Text fontSize="sm">Result</Text>
+          <Text fontSize="l">{data.result}</Text>
         </Box>
 
       </Box>
