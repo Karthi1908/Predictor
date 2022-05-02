@@ -21,7 +21,7 @@ const ContractProvider = Tezos.contract;
 
 const beaconWallet = new BeaconWallet({
   name: 'Predictor',
-  preferredNetwork: "ithacanet"
+  preferredNetwork: "mainnet"
 });
 
 Tezos.setWalletProvider(beaconWallet);
