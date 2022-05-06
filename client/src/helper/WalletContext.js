@@ -21,7 +21,7 @@ const useWallet = () => {
       const req = await beaconWallet.client.requestPermissions({
         network: {
           type: 'mainnet',
-		  rpcUrl: 'https://mainnet-tezos.giganode.io'
+	  rpcUrl: 'https://mainnet.api.tez.ie'
         },
       });
       if (req) {
