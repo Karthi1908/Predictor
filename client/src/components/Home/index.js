@@ -42,7 +42,7 @@ export default function Home() {
         </AccordionItem>
       </Accordion>
 	  
-		<Box display="flex" flexDirection="row" flexWrap="wrap">
+		<Box display="flex" flexDirection="column" flexWrap="wrap">
         		<Text color={colors.text}> <b>Current Predictions </b></Text>
 	  		<Box display="flex" flexDirection="row" flexWrap="wrap">
         			{inProgressArray.map((pred, i) => {
