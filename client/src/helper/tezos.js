@@ -15,7 +15,7 @@ const TOKEN_ADDRESS = 'KT1U8jQyUkwsYVpgogrjSAKyQXi8kWengpzp';
 //const Tezos = new TezosToolkit('https://hangzhounet.smartpy.io');
 //const Tezos = new TezosToolkit('https://ithacanet.smartpy.io');
 //const Tezos = new TezosToolkit('https://mainnet.smartpy.io');
-const Tezos = new TezosToolki('https://mainnet.api.tez.ie');
+const Tezos = new TezosToolkit('https://mainnet.api.tez.ie');
 Tezos.setPackerProvider(new MichelCodecPacker());
 
 const ContractProvider = Tezos.contract;
