@@ -21,7 +21,7 @@ const useWallet = () => {
       const req = await beaconWallet.client.requestPermissions({
         network: {
           type: 'mainnet',
-		  rpcUrl: 'https://mainnet.smartpy.io'
+		  rpcUrl: 'https://mainnet-tezos.giganode.io'
         },
       });
       if (req) {
