@@ -27,7 +27,7 @@ export default function Home() {
       maxHeight="1000vh"
       padding="5vh"
     >
-	<Text color={colors.text} style ={text-align: center;}> Join the community on  <a href = 'https://t.me/+wcqQOgMRyMBkZDll' target="_blank"> <b>telegram</b></a> for any queries.<br/> </Text>
+	<Text color={colors.text} text-align = 'center'> Join the community on  <a href = 'https://t.me/+wcqQOgMRyMBkZDll' target="_blank"> <b>telegram</b></a> for any queries.<br/> </Text>
 	<Accordion allowToggle margin="6">
         	<AccordionItem>
           	<h2>
