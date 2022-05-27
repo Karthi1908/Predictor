@@ -27,6 +27,7 @@ export default function Home() {
       maxHeight="1000vh"
       padding="5vh"
     >
+	<Text color={colors.text}> Join the community on  <a href = 'https://t.me/+wcqQOgMRyMBkZDll' target="_blank"> <b>telegram</b></a> to know more about Predictor.<br/> </Text>
 	<Accordion allowToggle margin="6">
         	<AccordionItem>
           	<h2>
