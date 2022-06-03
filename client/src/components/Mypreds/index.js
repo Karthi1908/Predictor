@@ -165,7 +165,7 @@ const AddNewPrediction = () => {
         Object.keys(options).map((key) => options[key]),
         startValue
       )
-      .send({amount : 2});
+      .send({amount : 1});
 	await op.confirmation(1);
     alert("Prediction Created!");
   };
