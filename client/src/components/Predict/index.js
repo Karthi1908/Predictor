@@ -96,7 +96,7 @@ const BuySellWindow = ({ id, options }) => {
                 </RadioGroup>
               </Box>
               <Box margin="3">
-                 <Text fontWeight="bold" fontSize="sm">
+                 <Text fontSize="sm">
                   100 shares cost 1 Tez
                 </Text>
 		<Text fontWeight="bold" fontSize="lg">
