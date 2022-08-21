@@ -73,22 +73,17 @@ Predictor follows the Parimutuel way of betting. So the odds for each option are
 The following steps are planned for future
 
 1. Integrating with Stablecoin ( Plenty USD, USDtz, kUSD) - Tezos based stablecoins
-2. Integrating with oracle for market data. So any prediction on market data will be resolved by the oracle itself.
-3. Introduce the staking for Reporters.
-4. Option to create scalar predictions
-5. Add Reputation only Prediction Contracts. Here only non-tradable/ non - transferable tokens instead of tez will be provided to the winners which will represent their reputation.
-6. Closed group Predictions - an option for people and organisations to bet on an event only among their acquaintances or clients. The people outside the group are restricted from trading the same contract. It will enable the Prediction as a Service concept for existing offline bookmakers who want to move their work on blockchain. 
+2. Option to create scalar predictions
+3. Add Reputation only Prediction Contracts. Here only non-tradable/ non - transferable tokens instead of tez will be provided to the winners which will represent their reputation.
+4. Closed group Predictions - an option for people and organisations to bet on an event only among their acquaintances or clients. The people outside the group are restricted from trading the same contract. It will enable the Prediction as a Service concept for existing offline bookmakers who want to move their work on blockchain. 
 
 
 ### Smart Contracts
 
-Current Smart contract : [KT19UD96tNFP8bq7u6Wk4x4R5sEyfXTu6ETx](https://smartpy.io/explorer.html?address=KT19UD96tNFP8bq7u6Wk4x4R5sEyfXTu6ETx)
+Current Smart contract : [KT1QM2Drh18w6fnU13fwxBCDAToWjKfcgZm5](https://smartpy.io/explorer.html?address=KT1QM2Drh18w6fnU13fwxBCDAToWjKfcgZm5)
 
-Current Token Contract : [KT1CFyf7vzF3EGT5UAvgNPtzkxoeLoQJf6qu](https://smartpy.io/explorer.html?address=KT1CFyf7vzF3EGT5UAvgNPtzkxoeLoQJf6qu)
+Current Token Contract : [KT1U8jQyUkwsYVpgogrjSAKyQXi8kWengpzp](https://smartpy.io/explorer.html?address=KT1U8jQyUkwsYVpgogrjSAKyQXi8kWengpzp)
 
-Older Smart Contract - [KT1Mn8ogydUu3NpB1tztJ2QpPC9ms4MbJi5m](https://smartpy.io/explorer.html?address=KT1Mn8ogydUu3NpB1tztJ2QpPC9ms4MbJi5m)
-
-Older Token Contract - [KT1Hi7QVB3zV7tG4hNHE36vC8LuMywvtUJA6](https://smartpy.io/explorer.html?address=KT1Hi7QVB3zV7tG4hNHE36vC8LuMywvtUJA6)
-
+Predictor is on mainnet and can be accessed at [https://predictor.tez.page/](https://predictor.tez.page/)
 
 
